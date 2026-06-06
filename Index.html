@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ten un Bonito Día</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#74ebd5,#9face6);
+    padding:20px;
+}
+
+.container{
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    max-width:700px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+h1{
+    color:#333;
+    margin-bottom:15px;
+}
+
+p{
+    color:#555;
+    margin-bottom:25px;
+}
+
+button{
+    background:#6c63ff;
+    color:white;
+    border:none;
+    padding:15px 35px;
+    font-size:18px;
+    border-radius:50px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    background:#564fd8;
+}
+
+.frase{
+    margin-top:30px;
+    font-size:22px;
+    color:#222;
+    font-weight:bold;
+    line-height:1.5;
+    min-height:100px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>🌞 Ten un bonito día</h1>
+    <p>Dale clic al botón para recibir una frase.</p>
+
+    <button onclick="mostrarFrase()">
+        🎁 Recibir frase
+    </button>
+
+    <div class="frase" id="frase">
+        Tu mensaje aparecerá aquí ✨
+    </div>
+</div>
+
+<script>
+
+const frases = [
+
+"Hoy puede ser el comienzo de algo increíble.",
+"Confía en ti, has superado cosas más difíciles.",
+"Tu esfuerzo está construyendo algo grande.",
+"Cada día es una nueva oportunidad.",
+"Las mejores historias comienzan con un pequeño paso.",
+"No subestimes el poder de tu constancia.",
+"Tu sonrisa puede cambiar el día de alguien.",
+"Lo mejor aún está por llegar.",
+"Hoy es un buen día para creer en ti.",
+"Tu potencial es más grande de lo que imaginas.",
+"Todo avance cuenta, incluso el más pequeño.",
+"Las dificultades también enseñan.",
+"No necesitas ser perfecto para ser extraordinario.",
+"Tu futuro agradece lo que haces hoy.",
+"Las oportunidades aparecen cuando sigues adelante.",
+"Siempre hay algo bueno esperando.",
+"Cada amanecer trae nuevas posibilidades.",
+"Tu valor no depende de la opinión de otros.",
+"Lo que hoy parece difícil mañana será experiencia.",
+"Confía en el proceso.",
+
+"Sigue avanzando aunque sea despacio.",
+"La paciencia también es una forma de fortaleza.",
+"Hoy puedes sorprenderte a ti mismo.",
+"Las grandes metas se alcanzan paso a paso.",
+"Tu actitud marca la diferencia.",
+"Hay personas que aprecian tu presencia.",
+"El éxito se construye todos los días.",
+"Respira confianza y exhala dudas.",
+"Lo que siembras hoy florecerá mañana.",
+"Tu energía positiva inspira a otros.",
+
+"Nunca es tarde para comenzar.",
+"Cada reto es una oportunidad disfrazada.",
+"Las buenas cosas toman tiempo.",
+"Eres más fuerte de lo que crees.",
+"Permítete crecer sin prisa.",
+"Un pequeño progreso sigue siendo progreso.",
+"Tu historia todavía tiene muchos capítulos.",
+"Hoy es perfecto para aprender algo nuevo.",
+"No tengas miedo de intentarlo.",
+"Todo cambio empieza con una decisión.",
+
+"Tu dedicación tiene valor.",
+"Las metas grandes comienzan con acciones pequeñas.",
+"Confía en tu capacidad de adaptarte.",
+"Siempre existe una razón para sonreír.",
+"El esfuerzo de hoy será la recompensa de mañana.",
+"Tu creatividad puede abrir caminos inesperados.",
+"Lo que haces importa.",
+"La mejor inversión es en ti mismo.",
+"No olvides reconocer tus logros.",
+"Cada día tienes una nueva oportunidad de mejorar.",
+
+"Las buenas vibras atraen cosas buenas.",
+"Hoy mereces sentirte orgulloso.",
+"Los errores son parte del aprendizaje.",
+"Tu perseverancia tiene poder.",
+"Las mejores versiones nacen de los desafíos.",
+"Todo lo que buscas también te busca.",
+"Hay belleza en seguir adelante.",
+"Tu crecimiento es visible.",
+"Las oportunidades llegan a quien está preparado.",
+"El optimismo también es una habilidad.",
+
+"Hoy puede ser un gran día.",
+"No dejes que una mala hora arruine todo el día.",
+"Tu presencia ilumina más de lo que imaginas.",
+"Los sueños se construyen trabajando por ellos.",
+"Cada paso cuenta.",
+"La confianza se fortalece practicándola.",
+"Siempre hay algo por agradecer.",
+"Lo importante es no rendirse.",
+"Las metas requieren paciencia y acción.",
+"Tu entusiasmo es contagioso.",
+
+"Hay algo bueno esperándote.",
+"Tu camino es único y valioso.",
+"Las pequeñas victorias también se celebran.",
+"Hoy es una página en blanco.",
+"El conocimiento abre puertas.",
+"Tu esfuerzo está dejando huella.",
+"Lo imposible suele tomar un poco más de tiempo.",
+"Cada desafío te hace crecer.",
+"Las oportunidades están más cerca de lo que crees.",
+"Tu futuro está lleno de posibilidades.",
+
+"Las cosas buenas llegan a quienes persisten.",
+"El éxito ama la disciplina.",
+"No necesitas tener todas las respuestas hoy.",
+"Tu determinación es admirable.",
+"Cada día es una nueva aventura.",
+"Confía en tus decisiones.",
+"Hay magia en no rendirse.",
+"Las metas claras crean caminos claros.",
+"Todo gran logro comenzó siendo una idea.",
+"Tu actitud puede cambiar el resultado.",
+
+"Hoy tienes la oportunidad de brillar.",
+"No olvides cuánto has avanzado.",
+"Los cambios positivos empiezan contigo.",
+"Las mejores oportunidades suelen sorprender.",
+"Tu tiempo llegará.",
+"Disfruta también el camino.",
+"Lo bueno se multiplica cuando se comparte.",
+"Tu fortaleza inspira.",
+"El aprendizaje nunca termina.",
+"Hoy vale la pena intentarlo.",
+
+"Las buenas noticias pueden llegar cuando menos lo esperas.",
+"Confía en tus capacidades.",
+"Tu esfuerzo está dando frutos aunque aún no los veas.",
+"Las posibilidades son infinitas.",
+"Cada día es una nueva oportunidad para ser feliz.",
+"Lo mejor de ti todavía está por descubrirse.",
+"Tu energía tiene impacto.",
+"La perseverancia abre puertas.",
+"Tu futuro puede ser brillante.",
+"Algo maravilloso podría suceder hoy."
+
+];
+
+function mostrarFrase(){
+    const aleatoria = frases[Math.floor(Math.random() * frases.length)];
+    document.getElementById("frase").innerText = aleatoria;
+}
+
+</script>
+
+</body>
+</html>
